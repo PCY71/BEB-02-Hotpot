@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../actions/index";
 import { Link } from "react-router-dom";
+import styled from 'styled-components'
 import ConnectWallet from "./ConnectWallet";
 
 function Nav({ connectWallet }) {
@@ -24,17 +25,17 @@ function Nav({ connectWallet }) {
         </span>
       </span>
       <div id="menu">
-        <span id="exchange">
+        <NavLink>
           <Link to="/exchange" style={{ textDecoration: "none" }}>
             NFT
           </Link>
-        </span>
-        <span id="signup">
+        </NavLink>
+        <NavLink>
           <Link to="/signup" style={{ textDecoration: "none" }}>
             회원가입
           </Link>
-        </span>
-        <span id="login">
+        </NavLink>
+        <NavLink>
           {account.isLogin
             ? (<Link to="/" style={{ textDecoration: "none" }} onClick={() => handleLogout()}>
               로그아웃
@@ -44,20 +45,25 @@ function Nav({ connectWallet }) {
               로그인
             </Link>)
           }
-        </span>
-        <span id="connect-button">
-          <button className="nav-button" onClick={() => connectWallet()}>
-            지갑 연결
-          </button>
-        </span>
-
-        <span>
+        </NavLink>
+        <NavLink>
           <Link to="/transfer" style={{ textDecoration: "none" }} >
             토큰전송
           </Link>
-        </span>
+        </NavLink>
+        <NavLink>
+          <button className="nav-button" onClick={() => connectWallet()}>
+            지갑 연결
+          </button>
+        </NavLink>
+
+
       </div>
     </div >
   );
 }
 export default Nav;
+
+const NavLink = styled.span`
+margin : 0 5px;
+`;
